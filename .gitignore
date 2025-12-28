@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+
+# Environment variables
+.env
+
+# Distribution / packagingo
+build/
+dist/
+*.egg-info/
+
+# Output and data
+output/
+data/
+data/skills_extracted_all_employees.xlsx
+data/skills_employees.xlsx
+
+# OS files
+.DS_Store
+
+# Test/cache
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# DS_store
+.DS_Store
+
+# token API
+.env
+
+# Ignore all pptx CV files
+*.pptx
+
+# Ignore all Excel files
+*.xlsx
