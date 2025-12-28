@@ -31,6 +31,7 @@ dependencies = [
     "langchain-nebius>=0.1.0",
     "langchain-tavily>=0.1.0",
     "rich>=13.0.0",
+    "pydantic>=2.0.0",
 ]
 
 [project.optional-dependencies]
