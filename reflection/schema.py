@@ -31,7 +31,7 @@ class RevisedCode(BaseModel):
     """Schema for the revised code after applying self-critique."""
 
     revised_code: str = Field(description="The final, improved Python code.")
-    revision_explanation: str = Field(
+    revised_explanation: str = Field(
         description="A summary of the changes made based on the critique."
     )
 

@@ -35,7 +35,7 @@ for key in ["API_KEY", "LANGCHAIN_API_KEY", "TAVILY_API_KEY"]:
 load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
-BASE_URL = os.getenv("BASE_URL")
+BASE_URL = os.getenv("ENDPOINT")
 MODEL = os.getenv("DEPLOYMENT_NAME")
 
 

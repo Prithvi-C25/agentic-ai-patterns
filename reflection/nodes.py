@@ -4,7 +4,6 @@ from pathlib import Path
 
 from rich.console import Console
 from rich.markdown import Markdown
-from rich.syntax import Syntax
 
 # Add parent directory to path to import tools
 sys.path.append(str(Path(__file__).parent.parent))
@@ -31,7 +30,7 @@ def generator_node(state):
     Request: {state['user_request']}
     """
 
-    draft = generator_llm.invoke(prompt=prompt)
+    draft = generator_llm.invoke(prompt)
     return {"draft": draft.model_dump()}
 
 
@@ -56,7 +55,7 @@ def critic_node(state):
     {code_to_critique}
     """
 
-    critique = critic_llm.invoke(prompt=prompt)
+    critique = critic_llm.invoke(prompt)
     return {"critique": critique.model_dump()}
 
 
@@ -86,5 +85,5 @@ def reviser_node(state):
     Please provide the final, refined code and a summary of the changes you made.
     """
 
-    revised_code = reviser_llm.invoke(prompt=prompt)
+    revised_code = reviser_llm.invoke(prompt)
     return {"revised_code": revised_code.model_dump()}
