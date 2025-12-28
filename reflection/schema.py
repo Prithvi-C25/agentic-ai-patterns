@@ -1,18 +1,6 @@
-import sys
-from pathlib import Path
 from typing import List
 
-# Add parent directory to path to import tools
-sys.path.append(str(Path(__file__).parent.parent))
-
 from pydantic import BaseModel, Field
-
-# For pretty printing
-from rich.console import Console
-from rich.markdown import Markdown
-from rich.syntax import Syntax
-
-from tools import get_openai_llm
 
 
 class DraftCode(BaseModel):
@@ -49,10 +37,3 @@ class RevisedCode(BaseModel):
 
 
 print("Pydantic models for Draft, Critique, and RefinedCode have been defined.")
-
-llm = get_openai_llm()
-
-# Initialize console for pretty printing
-console = Console()
-
-print("OpenAI LLM and Console are initialized.")
