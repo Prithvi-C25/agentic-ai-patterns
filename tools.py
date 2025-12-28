@@ -6,6 +6,7 @@ from langchain_core.prompts import ChatPromptTemplate  # For structuring prompts
 
 # LangChain & LangGraph components
 from langchain_nebius import ChatNebius  # Nebius LLM wrapper
+from langchain_openai import ChatOpenAI
 from langchain_tavily import TavilySearch  # Tavily search tool integration
 from langgraph.graph import END, StateGraph  # Build a state machine graph
 from langgraph.prebuilt import ToolNode, tools_condition  # Prebuilt nodes & conditions
@@ -29,3 +30,14 @@ os.environ["LANGCHAIN_PROJECT"] = (
 for key in ["API_KEY", "LANGCHAIN_API_KEY", "TAVILY_API_KEY"]:
     if not os.environ.get(key):  # If key not found in env vars
         print(f"{key} not found. Please create a .env file and set it.")
+
+
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
+BASE_URL = os.getenv("BASE_URL")
+MODEL = os.getenv("DEPLOYMENT_NAME")
+
+
+def get_openai_llm():
+    return ChatOpenAI(model=MODEL, api_key=API_KEY, base_url=BASE_URL, temperature=0)
