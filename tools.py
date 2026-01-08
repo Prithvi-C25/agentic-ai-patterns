@@ -1,22 +1,25 @@
 import os
-from typing import Annotated, Any, Dict, List, Optional, TypedDict
 
 from dotenv import load_dotenv  # Load environment variables from .env file
-from langchain_core.prompts import ChatPromptTemplate  # For structuring prompts
 
 # LangChain & LangGraph components
-from langchain_nebius import ChatNebius  # Nebius LLM wrapper
+# from langchain_nebius import ChatNebius  # Nebius LLM wrapper
 from langchain_openai import ChatOpenAI
-from langchain_tavily import TavilySearch  # Tavily search tool integration
-from langgraph.graph import END, StateGraph  # Build a state machine graph
-from langgraph.prebuilt import ToolNode, tools_condition  # Prebuilt nodes & conditions
 
 # Pydantic for data modeling / validation
-from pydantic import BaseModel, Field
+# from pydantic import BaseModel, Field
+
+# from langchain_tavily import TavilySearch  # Tavily search tool integration
+# from langgraph.graph import END, StateGraph  # Build a state machine graph
+# from langgraph.prebuilt import ToolNode, tools_condition  # Prebuilt nodes & conditions
+
 
 # For pretty printing output
-from rich.console import Console  # Console styling
-from rich.markdown import Markdown  # Render markdown in terminal
+# from rich.console import Console  # Console styling
+# from rich.markdown import Markdown  # Render markdown in terminal
+
+# from langchain_core.prompts import ChatPromptTemplate  # For structuring prompts
+
 
 load_dotenv()  # Load environment variables from .env file
 
