@@ -1,14 +1,23 @@
-# Agentic Architectures 1: Reflection
+# Agentic Architectures 1: PEV (Planner-Executor-Verifier)
 
 ## Definition
 
-The Reflection architecture involves an agent critiquing and revising its own output before returning a final answer. Instead of a single-pass generation, it engages in a multi-step internal monologue: produce, evaluate, and improve. This mimics the human process of drafting, reviewing, and editing to catch errors and enhance quality.
+Our Planning agent works well when the path is clear, it makes a plan and follows it. But there’s a hidden assumption ...
+
+What happens when things go wrong? If a tool fails, an API is down, or search returns junk, a standard planner just passes the error along, ending in failure or nonsense. PEV is important for building robust and reliable workflows. You do use it anywhere an agent interacts with external tools that might be unreliable.
 
 ## High-level Workflow
 
-Generate: The agent produces an initial draft or solution based on the user's prompt.
-Critique: The agent then switches roles to become a critic. It asks itself questions like: "What could be wrong with this answer?", "What is missing?", "Is this solution optimal?", or "Are there any logical flaws or bugs?".
-Refine: Using the insights from its self-critique, the agent generates a final, improved version of the output.
+PEV (Planner-Executor-Verifier) architecture is a simple but powerful upgrade to the Planning pattern that adds a critical layer of quality control and self-correction.
+
+1. Plan: A ‘Planner’ agent creates a sequence of steps.
+2. Execute: An ‘Executor’ agent takes the next step from the plan and calls the tool.
+3. Verify: A ‘Verifier’ agent examines the tool’s output. It checks for correctness, relevance, and errors.
+4. Route & Iterate: Based on the Verifier’s judgment:
+
+If the step succeeded, the agent moves to the next step in the plan.
+If the step failed, the agent loops back to the Planner to create a new plan, now aware of the failure.
+If the plan is complete, it proceeds to the end.
 
 ## When to Use / Applications
 
