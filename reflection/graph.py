@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 from typing import Dict, Optional, TypedDict
 
+import mlflow
 from langgraph.graph import END, StateGraph
 from rich.console import Console
 from rich.markdown import Markdown
@@ -9,6 +10,12 @@ from rich.syntax import Syntax
 
 sys.path.append(str(Path(__file__).parent.parent))
 from reflection.nodes import critic_node, generator_node, reviser_node
+
+mlflow.langchain.autolog()
+
+mlflow.set_experiment("Reflection Agentic Pattern Experiment")
+mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri("http://localhost:5000")
 
 
 class ReflectionState(TypedDict):
