@@ -1,6 +1,7 @@
 import os
 
 import mlflow
+from dotenv import load_dotenv
 from langchain_community.document_loaders import ArxivLoader
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
@@ -31,4 +32,28 @@ splitter = RecursiveCharacterTextSplitter(
 )
 chunks = splitter.split_documents(docs)
 
+
 # Join chunks in a single string
+def join_chunks(chunks: list) -> str:
+    return "\n\n".join(chunk.page_content for chunk in chunks)
+
+
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
+BASE_URL = os.getenv("ENDPOINT")
+MODEL = os.getenv("DEPLOYMENT_NAME")
+EMBEDDING_MODEL = os.getenv(
+    "EMBEDDING_DEPLOYMENT_NAME", MODEL
+)  # Use same as MODEL if not set
+
+llm = ChatOpenAI(model=MODEL, api_key=API_KEY, base_url=BASE_URL, temperature=0)
+
+# Create Embeddings and a Vector Store
+embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL, api_key=API_KEY, base_url=BASE_URL)
+
+# Create a vector store from documents
+vectorstor = InMemoryVectorStore.from_documents(chunks, embeddings)
+
+# Create a retriever from the vector store
+retriever = vectorstor.as_retriever(search_kwargs={"k": CONFIG["retriever_k"]})
