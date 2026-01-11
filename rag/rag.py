@@ -10,7 +10,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from mlflow.genai.scorers import Correctness, ExpectationsGuidelines, RelevanceToQuery
 
-from rag.config import CONFIG
+from .config import CONFIG
 
 mlflow.set_experiment("LangChain-RAG-MLflow")
 mlflow.langchain.autolog()
@@ -29,3 +29,6 @@ splitter = RecursiveCharacterTextSplitter(
     chunk_size=CONFIG["chunk_size"],
     chunk_overlap=CONFIG["chunk_overlap"],
 )
+chunks = splitter.split_documents(docs)
+
+# Join chunks in a single string
